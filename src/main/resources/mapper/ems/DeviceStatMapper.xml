@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cvnchina.emsquartz.dataaccess.DeviceStatMapper">
+ 	<resultMap type="HebeiNeNum" id="hebeiNeNum">
+        <id property="id" column="id"/>
+        <result property="nealarmnum" column="nealarmnum"/>
+        <result property="nenum" column="nenum"/>
+        <result property="cratetime" column="cratetime"/>
+        <result property="companyinfo" column="companyinfo"/>
+    </resultMap>
+    <select id="getDeviceNum" parameterType="java.util.Map"  resultType="int">
+    	select count(*) from ne 
+    	<where>
+	    	<if test="maxtype != null and maxtype != ''">
+                and maxtype in (#{maxtype}) 
+            </if>
+            <if test="companyinfo != null and companyinfo != ''">
+                and companyinfo like "%"#{companyinfo}"%" 
+            </if>
+            <if test="nestatus != null and nestatus != '-1'">
+                and nestatus = #{nestatus} 
+            </if>
+	    </where> 
+    </select>
+    <insert id="addDeviceNum" parameterType="hebeiNeNum" useGeneratedKeys="true" keyProperty="id">
+        insert into hbnenum(nealarmnum,nenum,cratetime,companyinfo)
+        values(#{nealarmnum}, #{nenum},#{cratetime}, #{companyinfo})
+    </insert>
+</mapper>

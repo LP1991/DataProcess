@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cvnchina.emsquartz.dataaccess.AlarmDailyMapper">
+	 <resultMap type="AlarmDaily" id="AlarmDaily">
+        <id property="id" column="id"/>
+        <result property="groupid" column="groupid"/>
+        <result property="alarmlevel" column="alarmlevelid"/>
+        <result property="alarmcatelogid" column="alarmcatelogid"/>
+        <result property="alarmnum" column="alarmnum"/>
+        <result property="alarmdate" column="alarmdate"/>
+    </resultMap>
+    <select id="getAlarmDailyStat"  parameterType="java.util.Map" resultMap="AlarmDaily">
+        select count(1) alarmnum,alarmcatalogid,alarmlevelid,groupid from ${table}
+        where alarmlastdate &gt;#{begindate,jdbcType=TIMESTAMP} and alarmlastdate &lt;#{enddate,jdbcType=TIMESTAMP}
+        GROUP BY groupid,alarmlevelid,alarmcatalogid
+    </select>
+</mapper>

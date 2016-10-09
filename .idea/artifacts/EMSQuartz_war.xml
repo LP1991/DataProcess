@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="EMSQuartz:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="EMSQuartz.war">
+      <element id="artifact" artifact-name="EMSQuartz:war exploded" />
+    </root>
+  </artifact>
+</component>

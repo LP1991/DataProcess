@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p" xmlns="http://www.springframework.org/schema/beans"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- 启动触发器的配置开始 -->
+	<bean name="startQuertz" lazy-init="false" autowire="no"
+		  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="addUserTrigger"/>
+			</list>
+		</property>
+	</bean>
+	<!-- 启动触发器的配置结束 -->
+
+	<!-- 调度的配置开始 19-21  22  22-->
+	<bean id="statOnlineUserTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="statOnlineUserJobDetail"/>
+		</property>
+		<property name="cronExpression">
+			<value>0 0 19-21 * * ?</value>
+		</property>
+	</bean>
+	
+	<bean id="statAlarmNumTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="statAlarmNumJobDetail"/>
+		</property>
+		<property name="cronExpression">
+			<value>0 0 22 * * ?</value>
+		</property>
+	</bean>
+	
+	<bean id="statDeviceNumTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="statDeviceNumJobDetail"/>
+		</property>
+		<property name="cronExpression">
+			<value>0 0/1 * * * ?</value>
+		</property>
+	</bean>
+
+	<bean id="addUserTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="addUserJobDetail"/>
+		</property>
+		<property name="cronExpression">
+			<value>0 0/1 * * * ?</value>
+		</property>
+	</bean>
+	<!-- 调度的配置结束 -->
+
+	<!-- job的配置开始 -->
+	<bean id="statOnlineUserJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="statOnlineUser"/>
+		</property>
+		<property name="targetMethod">
+			<value>execute</value>
+		</property>
+	</bean>
+	
+	<bean id="statAlarmNumJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="statOnlineUser"/>
+		</property>
+		<property name="targetMethod">
+			<value>addAlarmStatForGroup</value>
+		</property>
+	</bean>
+	
+	<bean id="statDeviceNumJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="statOnlineUser"/>
+		</property>
+		<property name="targetMethod">
+			<value>addDeviceNum</value>
+		</property>
+	</bean>
+
+	<bean id="addUserJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="userBean"/>
+		</property>
+		<property name="targetMethod">
+			<value>addUser</value>
+		</property>
+	</bean>
+
+	<!-- job的配置结束 -->
+
+	<!-- 工作的bean -->
+	<bean id="statOnlineUser" class="com.cvnchina.emsquartz.quartz.ReportDataJob"/>
+	<bean id="userBean" class="com.cvnchina.emsquartz.quartz.QuartzJob"/>
+
+
+</beans>

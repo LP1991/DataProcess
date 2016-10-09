@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cvnchina.emsquartz.dataaccess.AlarmStatMapper">
+	 <resultMap type="AlarmlevelNum" id="alarmNumType">
+        <id property="alarmlevelid" column="alarmlevelid"/>
+        <result property="num" column="num"/>
+    </resultMap>
+    <select id="getAlarmlevelNum"  parameterType="int"  resultMap="alarmNumType">
+    	select count(*) num, alarmlevelid from Currentalarm where groupid = #{groupid} group by alarmlevelid
+    </select>
+    
+    <insert id="saveSyncAlarmStat" parameterType="syncalarmstatdata" useGeneratedKeys="true" keyProperty="id">  
+    	insert into  
+    	syncalarmstatdata(areacode,alarmlevel_1,alarmlevel_2,alarmlevel_3,alarmlevel_4,alarmlevel_5,alarmlevel_6,alarmlevel_7,stattime)  
+    	values(#{areacode}, #{alarmlevel1}, #{alarmlevel2}, #{alarmlevel3}, #{alarmlevel4}, #{alarmlevel5}, #{alarmlevel6}, #{alarmlevel7}, #{stattime})  
+	</insert>
+
+
+</mapper>

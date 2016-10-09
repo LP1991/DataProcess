@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cvnchina.emsquartz.dataaccess.OnlineUserMapper">
+    <select id="getUserNum" resultType="int">
+    	select count(*) from ne where maxtype in(3,8) and nestatus = 1
+    </select>
+
+    <insert id="add" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        onlineuserstat(usernum,time)
+        values(#{usernum}, #{time})
+    </insert>
+</mapper>
