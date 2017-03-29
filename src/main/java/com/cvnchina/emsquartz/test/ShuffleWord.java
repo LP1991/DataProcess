@@ -21,6 +21,7 @@ public class ShuffleWord {
                 bw.write(string);
                 line = bf.readLine();
             }
+
             bw.flush();
             bw.close();
             bf.close();
