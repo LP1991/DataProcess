@@ -6,5 +6,6 @@ package com.cvnchina.emsquartz.quartz;
 public class Test {
     public void test(){
         System.out.print("asd");
+        System.out.print("asd");
     }
 }
