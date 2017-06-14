@@ -8,4 +8,7 @@ public class Test {
         System.out.print("asd");
         System.out.print("asd");
     }
+    public static void main(String[] args){
+
+    }
 }

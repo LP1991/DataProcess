@@ -8,10 +8,9 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             classpath:/config/mvc-core-config.xml
+            classpath:/config/mvc-view-config.xml
             classpath:/config/business-config.xml
-            classpath:/config/business-config-report.xml
             classpath:/config/i18n.xml
-            classpath:/config/quartz.xml
         </param-value>
     </context-param>
     <listener>
