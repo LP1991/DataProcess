@@ -4,7 +4,7 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
 	 http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
-	<!-- 启动触发器的配置开始 -->
+	<!-- 启动触发器的配置开始
 	<bean name="startQuertz" lazy-init="false" autowire="no"
 		  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
@@ -13,9 +13,10 @@
 			</list>
 		</property>
 	</bean>
-	<!-- 启动触发器的配置结束 -->
+	 启动触发器的配置结束 -->
 
 	<!-- 调度的配置开始 19-21  22  22-->
+	<!--
 	<bean id="statOnlineUserTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail">
 			<ref bean="statOnlineUserJobDetail"/>
@@ -51,7 +52,7 @@
 			<value>0 0/1 * * * ?</value>
 		</property>
 	</bean>
-	<!-- 调度的配置结束 -->
+	 调度的配置结束 -->
 
 	<!-- job的配置开始 -->
 	<bean id="statOnlineUserJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cvnchina.emsquartz.dataaccess.ProductMapper">
+	 <resultMap type="Product" id="Product">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+    <select id="queryAll"  parameterType="java.util.Map" resultMap="Product">
+        select id,name,description  from product
+        <where>
+            <if test="name != null and name != ''"> and name = #{name} </if>
+            <if test="description != null and description != ''"> and description LIKE CONCAT('%', #{description}, '%') </if>
+            <if test="ingredient_name != null and ingredient_name != ''"> and id IN (SELECT pro_id FROM pro_ingre_rela WHERE ingre_id IN (SELECT id from ingredient WHERE name = #{ingredient_name}))</if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,19 @@
+CREATE TABLE `product` (
+  `id` int(14) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(255) CHARACTER SET utf8 DEFAULT '' COMMENT 'product name',
+  `description` varchar(255) CHARACTER SET utf8 DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ingredient` (
+  `id` int(14) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(255) CHARACTER SET utf8 DEFAULT '' COMMENT 'product name',
+  `description` varchar(255) CHARACTER SET utf8 DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `pro_ingre_rela` (
+  `pro_id` int(14) NOT NULL,
+  `ingre_id` int(14) NOT NULL,
+  PRIMARY KEY (`pro_id`,`ingre_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

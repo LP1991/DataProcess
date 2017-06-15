@@ -15,7 +15,7 @@ $(function () {
 		"bServerSide": true,
 		"sScrollX": "1380px",
 		"bScrollCollapse": true,
-		"sAjaxSource": "/zero/lease/query",
+		"sAjaxSource": "/zero/product/list",
 		"sServerMethod": "POST",
 		"aoColumns": [
 			{"sTitle": "IP地址",   "mData": "ipaddress"},

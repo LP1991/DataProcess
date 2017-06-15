@@ -13,6 +13,28 @@
 		<spring.version>4.2.2.RELEASE</spring.version>
 		<jackson.version>2.5.0</jackson.version>
   </properties>
+	<repositories>
+		<repository>
+			<id>local</id>
+			<url>http://10.1.70.85:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>aliyun</id>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
